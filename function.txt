@@ -1,0 +1,10 @@
+
+~~~~~~~~~~~~~~ AGGREGATE ~~~~~~~~~~~~~~~~
+
+$ select MAX(<colX>) from <table>;
+
+
+$ select <colZ>, count(*) from <table> group by <colX>;
+
+
+

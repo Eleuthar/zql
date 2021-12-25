@@ -1,0 +1,21 @@
+
+**********************************
+|     ACCESS DENIED FOR ROOT     |
+**********************************
+
+
+1. Open & Edit /etc/my.cnf or /etc/mysql/my.cnf
+
+2. Add skip-grant-tables under [mysqld]
+
+3. Restart Mysql
+
+4. login to mysql now using the below command mysql -u root -p
+
+5. Run mysql> flush privileges;
+
+6. Set new password by ALTER USER 'root'@'localhost' IDENTIFIED BY 'NewPassword';
+
+7. Go back to /etc/my.cnf and remove/comment skip-grant-tables
+
+8. Restart Mysql

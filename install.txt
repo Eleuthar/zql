@@ -1,0 +1,22 @@
+
+# rpm -Uvh https://repo.mysql.com/mysql80-community-release-el7-3.noarch.rpm
+	\\ enable repo
+
+
+# sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/mysql-community.repo
+	\\ disable all repo in mysql repo file
+
+
+# yum --enablerepo=mysql80-community install mysql-community-server
+	\\ install
+
+# service mysqld start
+# grep "A temporary password" /var/log/mysqld.log
+	\\ grab temp pwd
+
+# mysql_secure_installation
+
+# service mysqld restart
+
+# chkconfig mysqld on
+

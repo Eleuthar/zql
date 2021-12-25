@@ -1,0 +1,5 @@
+
+$ grant full on table <tableQ> to <uzr>;
+
+$ grant select on table <tableQ> to <uzr>;
+

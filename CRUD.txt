@@ -1,0 +1,93 @@
+$ show databases;
+
+
+$ create database <db_name>;
+
+
+$ use <db_name>;
+
+
+$ create table <name> (id INTEGER PRIMARY KEY, <colName1> <type>, <colName2> <type>);
+
+
+$ describe <table>;
+$ show columns from <table>;
+$ select column_name from information_schema.columns where table_schema = '<db>' and table_name = '<table>'
+	\\ show table column names
+
+ 
+--- !!! IMPORTANT !!! ---
+
+~ wrapping up multiple commands inside "BEGIN TRANSATION;" ended with "COMMIT;"
+this ensures the correct exection of all enclosed commands, else it will rollback before beginning transaction
+
+~  
+
+
+~~~~~~~~~~~~~~~ INSERT ~~~~~~~~~~~~~~~~~~~
+
+$ insert into <table> values (<id>, '<value>', '<value>');
+
+
+$ insert into <table> (<colX>, <colZ>) values ('<valueX>', '<valueZ>');
+
+
+
+
+~~~~~~~~~~~~~~~ SELECT ~~~~~~~~~~~~~~~~~~~
+
+$ select * from <table> where <colX> >= <integer> and <colX> like "%<string>%" order by <colX> DESC;
+
+
+$ select * from <table> where <colX> in (<list>);
+
+
+$ select <colX> case when <colX> > 18 then <valueX> else <valueZ> end <colZ> from <table> order by <colZ>
+	\\ transform with CASE to select a new conditional column
+
+
+$ select <colX>, SUM(<colZ>) as <alias> from <tableX> group by <colX> having <alias> > <int>;
+	\\ having clause considers the group by output, not individual record like 'where'
+
+
+$ select <tableX>.<colX>, <tableZ>.<colZ> from <tableX> join <tableZ> on <tableX>.<colX> = <tableZ>.<colZ>;
+	\\ explicit inner join
+
+
+$ select <tableX>.<colX>, <tableQ>.<colQ>, <alias>.<colZ> from <tableX> join <tableX> <alias> on <tableX>.<colX> = <alias>.<colZ>
+	\\ self join
+
+
+
+
+~~~~~~~~~~~~~~~ UPDATE \ DELETE ~~~~~~~~~~~~
+
+$ update <table> set <colZ> = <value> where <colX> = <value>;
+
+
+$ delete from <table> where <colX> = <value>;
+
+
+$ truncate table <table>
+	\\ remove all data
+
+
+
+
+~~~~~~~~~~~~~ ALTER ~~~~~~~~~~~~~~
+
+$ alter table <tableX> rename to <tableQ>;
+	\\ rename
+
+
+$ alter table <tableX> add column <colX> <type>;
+$ update <tableX> set <colX>=<value> where <colZ> in ("val1", "val2", "val3");
+	\\ add column & set valuez
+
+
+$ alter table <tableQ> drop <colZ>;
+	\\ delete column
+
+
+$ alter table <tableX> modify <colZ> text not null;
+	\\ modify column constraint
