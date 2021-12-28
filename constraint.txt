@@ -1,0 +1,107 @@
+
+~~~~~~~~~~~~~~~~~~~~~  PRIMARY KEY  ~~~~~~~~~~~~~~~~~~~
+
+$ create table `uzr_roles` (
+	`uzr_id` int,
+	`rol_id` int,
+	`nickname` varchar,
+	primary key (`uzr_id`, `rol_id`),
+);
+
+
+$ alter table `uzr_role` add primary key (`nickname`);
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~  FOREIGN KEY  ~~~~~~~~~~~~~~~~~~~
+
+
+$ create table <tableQ> (
+        <colQ> int primary key auto_increment,
+        <colZ> varchar(255) not null,
+        <colJ> int not null,
+        foreign key (<colJ>)
+                references <tableX> (<colX>)
+                on delete cascade \ set null
+		on update cascade \ set null
+);
+
+
+
+OPTIONS:
+````````
+* cascade = parent table change reflected in child
+
+* set null = parent table deleted or updated, the FK in child table is set to NULL
+
+* restrict == no action = if row in parent exist in child, MySQL reject delete or update of parent
+
+* set default = action rejected by InnoDB & NDB table
+
+
+
+DISABLE FK CHECK
+`````````````````
+
+-- useful when importing data from CSV, to avoid needing to import data in a proper order.
+
+SET foreign_key_checks = 0;
+
+SET foreign_key_checks = 1;
+
+
+
+
+~~~~~~~~~~ UNIQUE, NOT NULL, DEFAULT, CHECK ~~~~~~~~~~
+
+create table `tbQ` (
+	..
+	`colZ` not null default <defaultValue>,
+	`colX` unique,
+	CONSTRAINT uniq_col UNIQUE (`colJ`, `colG`), 
+	CONSTRAINT `colZ` CHECK (`colX` >= 9)
+); 
+
+
+$ alter table `tbQ` alter column `colQ` set default <value>;
+
+
+$ alter table `tbQ` alter column `colQ` drop default;
+	\\ drop default constraint
+
+
+$ alter table `tbQ` drop index <index>;
+	\\ drop unique constraint
+
+
+$ alter table `tbQ` drop check <index>;
+	\\ drop check constraint
+
+
+$ alter table `tbQ` add constraint <index> unique (`colX`, `colQ`);
+
+
+$ alter table `tbQ` change `old_col_name` `new_col_name` <type> not null;
+	\\ add not null constraint
+
+
+$ alter table `tbQ` modify `colQ` `colQ` <type>;
+	\\ drop not null by redefining the column
+
+
+
+
+~~~~~~~~~~~~  AUTO_INCREMENT  ~~~~~~~~~~
+
+* must have: NOT NULL, index; can apply to primary key or unique index 
+
+* to obtain the last generated id > LAST_INSERT_ID()
+
+* if bigger than current, INSERT will create a new offset for the next auto increment ID (will lead to gaps)
+
+* if bigger than current, UPDATE will continue from the last generated ID
+
+* on DELETE, db engine may or may not reuse the deleted seq number.
+
+

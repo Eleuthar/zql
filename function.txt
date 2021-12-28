@@ -7,4 +7,30 @@ $ select MAX(<colX>) from <table>;
 $ select <colZ>, count(*) from <table> group by <colX>;
 
 
+<<<<<<< HEAD
+$ select concat_ws(', ', <colZ>, <colX>) as <alias>;
 
+
+$ update <tableQ> set <colQ> = replace(<colQ>, '<target>','<newVal>');
+
+
+
+
+~~~~~~~~~~~~  FOREIGN KEY \ DELETE CASCADE  ~~~~~~~~~~~~
+
+$ use information_schema;
+$ select table_name from referential_constraints where constraint_schema = '<dbName>' and referenced_table_name = '<tableQ>' and delete_rule = '<cascade>';
+	\\ determine which tables are impacted by delete cascade
+
+
+$ create table <tableQ> (
+	<colQ> int primary key auto_increment,
+	<colZ> varchar(255) not null,
+	<colX> int not null,
+	foreign key (<colX>)
+		references <tableX> (<colX>)
+		on delete cascade
+);
+=======
+
+>>>>>>> 2dd842787bce09aa9c729af94688241dce086d5b
