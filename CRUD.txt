@@ -7,7 +7,7 @@ $ create database <db_name>;
 $ use <db_name>;
 
 
-$ create table <name> (id INTEGER PRIMARY KEY, <colName1> <type>, <colName2> <type>);
+$ create table <name> (id INT PRIMARY KEY auto_increment, <colName1> <type>, <colName2> <type>);
 
 
 $ describe <table>;
