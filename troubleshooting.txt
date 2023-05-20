@@ -1,3 +1,6 @@
+GRANT ALL PRIVILEGES ON *.* TO 'uzr'@'localhost';
+
+
 
 **********************************
 |     ACCESS DENIED FOR ROOT     |
